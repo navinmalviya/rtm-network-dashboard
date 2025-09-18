@@ -478,7 +478,7 @@ export const divisionNodes = [
                             id: 'test1',
                             type: 'mainNode', // optional
                             height: 1, // takes 1U
-                            data: { status: 'up', label: 'test1', nodeIp: '10.0.0.1' },
+                            data: { status: 'up', label: 'BMI1', nodeIp: '10.0.0.1' },
                             style: { width: '100px', height: '34px' },
                             position: { x: -1520, y: 1090 },
                         },
@@ -504,6 +504,60 @@ export const divisionNodes = [
                             targetIP: '3.3.3.3',
                         },
                     ],
+                },
+            ],
+            racksForRackTopology: [
+                {
+                    label: 'BMI Rack A',
+                    size: 42,
+                    devices: [
+                        {
+                            id: 'devA1',
+                            label: 'Firewall',
+                            nodeIp: '10.0.0.1',
+                            rackLocation: 1,
+                            height: 2,
+                            status: 'up',
+                        },
+                        {
+                            id: 'devA2',
+                            label: 'Switch A',
+                            nodeIp: '10.0.0.2',
+                            rackLocation: 4,
+                            height: 1,
+                            status: 'up',
+                        },
+                    ],
+                    edges: [
+                        {
+                            id: 'devA1-devA2',
+                            source: 'devA1',
+                            target: 'devA2',
+                            type: 'custom',
+                            sourceLabel: 'Gi0/1',
+                            targetLabel: 'Gi0/2',
+                            sourceIP: '192.168.1.1',
+                            targetIP: '192.168.1.2',
+                            status: 'up',
+                        },
+                    ],
+                    position: { x: 0, y: 0 },
+                },
+                {
+                    label: 'Rack B',
+                    size: 9,
+                    devices: [
+                        {
+                            id: 'devB1',
+                            label: 'Router B',
+                            nodeIp: '10.0.0.3',
+                            rackLocation: 1,
+                            height: 2,
+                            status: 'down',
+                        },
+                    ],
+                    edges: [],
+                    position: { x: 300, y: 0 },
                 },
             ],
         },

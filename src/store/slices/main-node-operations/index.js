@@ -9,7 +9,7 @@ const mainNodeOperationsSlice = createSlice({
         setMainNodeDetails: (state, action) => {
             const { details } = action.payload;
 
-            const { nodeIp, label, status, racks } = details;
+            const { nodeIp, label, status, racks, racksForRackTopology } = details;
 
             const devices = [];
             const edges = [];
@@ -48,6 +48,7 @@ const mainNodeOperationsSlice = createSlice({
                 devices,
                 edges,
                 noOfRacks,
+                racksForRackTopology,
             };
         },
     },
