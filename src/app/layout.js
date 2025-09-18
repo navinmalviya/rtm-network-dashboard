@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  console.log('store==>', store.getState());
+    console.log('store==>', store.getState());
     return (
         <html lang='en'>
             <body style={{ background: 'black' }}>

@@ -1,7 +1,4 @@
-import RTMDashboardTabs from "./tabs";
-import RtmModal from "./modal";
+import RTMDashboardTabs from './tabs';
+import RtmModal from './modal';
 
-export {
-    RTMDashboardTabs,
-    RtmModal
-}
+export { RTMDashboardTabs, RtmModal };

@@ -44,8 +44,7 @@ export default function RtmModal({ children, modalName, onCancel }) {
                     onCancel();
                 }
             }}
-            style={customStyles}
-        >
+            style={customStyles}>
             {children}
         </Modal>
     );
