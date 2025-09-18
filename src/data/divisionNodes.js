@@ -110,7 +110,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'RTM_NOCC',
 
             // ✅ Racks inside the node
             racks: [
@@ -161,7 +161,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'RTM_STATION',
 
             // ✅ Racks inside the node
             racks: [
@@ -212,7 +212,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'RTM_A',
 
             // ✅ Racks inside the node
             racks: [
@@ -263,7 +263,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'MRN',
 
             // ✅ Racks inside the node
             racks: [
@@ -314,7 +314,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'BILD',
 
             // ✅ Racks inside the node
             racks: [
@@ -415,7 +415,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'BOG',
 
             // ✅ Racks inside the node
             racks: [
@@ -466,7 +466,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'BMI',
 
             // ✅ Racks inside the node
             racks: [
@@ -517,7 +517,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'AGR',
 
             // ✅ Racks inside the node
             racks: [
@@ -568,7 +568,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'PCN',
 
             // ✅ Racks inside the node
             racks: [
@@ -619,7 +619,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'BJG',
 
             // ✅ Racks inside the node
             racks: [
@@ -670,7 +670,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'THDR',
 
             // ✅ Racks inside the node
             racks: [
@@ -721,7 +721,7 @@ export const divisionNodes = [
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
-            label: 'RTI',
+            label: 'MGN',
 
             // ✅ Racks inside the node
             racks: [

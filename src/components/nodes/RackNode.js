@@ -1,63 +1,63 @@
-// components/RackNode.js
-'use client';
-
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 
 export default function RackNode({ data }) {
-  const { label, size, devices = [] } = data;
-  const rackHeight = size * 10; // Each U = 10px
+  const rackHeight = data.size * 10; // scale rack size (U → px)
+  const labelHeight = 20; // reserve 20px for the rack label
 
   return (
     <div
       style={{
-        width: 160,
-        height: rackHeight,
+        width: 120,
+        height: rackHeight + labelHeight,
         border: '2px solid black',
         borderRadius: 4,
-        backgroundColor: '#fff',
+        background: '#fff',
         position: 'relative',
-        fontSize: 10,
-        overflow: 'hidden',
       }}
     >
+      {/* Rack Label */}
       <div
         style={{
-          backgroundColor: '#333',
+          height: labelHeight,
+          background: '#444',
           color: '#fff',
-          padding: '2px 4px',
+          fontSize: 12,
           fontWeight: 'bold',
+          textAlign: 'center',
+          lineHeight: `${labelHeight}px`,
+          borderBottom: '1px solid #000',
         }}
       >
-        {label} ({size}U)
+        {data.label}
       </div>
-      {devices.map((device) => {
-        const top = (device.rackLocation - 1) * 10; // rackLocation in U
-        const height = device.height * 10;
-        return (
-          <div
-            key={device.id}
-            style={{
-              position: 'absolute',
-              top,
-              left: 8,
-              width: 140,
-              height,
-              backgroundColor: '#e0e0e0',
-              border: '1px solid #888',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 10,
-              overflow: 'hidden',
-            }}
-          >
-            {device.data.label}
-          </div>
-        );
-      })}
-      <Handle type="target" position={Position.Left} style={{ background: '#555' }} />
-      <Handle type="source" position={Position.Right} style={{ background: '#555' }} />
+
+      {/* Devices */}
+      {data.devices.map((device) => (
+        <div
+          key={device.id}
+          style={{
+            position: 'absolute',
+            top: labelHeight + device.rackLocation * 10, // add label offset
+            left: 10,
+            width: 100,
+            height: device.height * 10,
+            background: '#e0e0e0',
+            border: '1px solid #000',
+            borderRadius: 2,
+            fontSize: 10,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {device.label}
+        </div>
+      ))}
+
+      {/* Optional rack handles */}
+      <Handle type="target" position={Position.Left} />
+      <Handle type="source" position={Position.Right} />
     </div>
   );
 }
