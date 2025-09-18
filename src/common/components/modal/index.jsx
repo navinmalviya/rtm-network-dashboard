@@ -34,7 +34,7 @@ if (typeof window !== 'undefined') {
 export default function RtmModal({ children, modalName, onCancel }) {
     const dispatch = useDispatch();
     const isOpen = useSelector(state => state.modals[modalName]);
-    console.log('isopen', isOpen)
+
     return (
         <Modal
             isOpen={isOpen || false}

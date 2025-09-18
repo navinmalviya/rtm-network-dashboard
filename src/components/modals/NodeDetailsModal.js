@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Modal from 'react-modal';
-import InternalTopology from './InternalTopology';
+import InternalTopology from '../topologies/InternalTopology';
 import RTMDashboardTabs from '@/common/components/tabs';
 import { useSearchParams } from 'next/navigation';
 import { RtmModal } from '@/common/components';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '@/store/slices/modal-slice';
 import { useSelector } from 'react-redux';
-import MultiRackTopology from './RackTopology';
+import MultiRackTopology from '../topologies/RackTopology';
 // const customStyles = {
 //     content: {
 //         top: '50%',

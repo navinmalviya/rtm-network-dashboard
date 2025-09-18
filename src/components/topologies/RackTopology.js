@@ -10,8 +10,8 @@ import ReactFlow, {
 } from 'reactflow';
 
 import 'reactflow/dist/style.css';
-import RackNode from './RackNode';
-import CustomEdge from './CustomEdge';
+import RackNode from '../nodes/RackNode';
+import CustomEdge from '../edges/CustomEdge';
 
 const nodeTypes = {
   rackNode: RackNode,

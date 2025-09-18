@@ -4,9 +4,9 @@ import React, { useState, useCallback } from 'react';
 import ReactFlow, { Background, Controls, MiniMap, useNodesState, useEdgesState, ReactFlowProvider } from 'reactflow';
 
 import 'reactflow/dist/style.css';
-import CustomEdge from './CustomEdge';
-import MultiPortNode from './MultiportNode';
-import MainNode from './MainNode';
+import CustomEdge from '../edges/CustomEdge';
+import MultiPortNode from '../nodes/MultiportNode';
+import MainNode from '../nodes/MainNode';
 
 const edgeTypes = {
     custom: CustomEdge,
@@ -50,8 +50,6 @@ export default function InternalTopology({ internalNodes, internalEdges }) {
     ];
     const [nodes, , onNodesChange] = useNodesState(internalNodes || fallbackNodes);
     const [edges, , onEdgesChange] = useEdgesState(internalEdges || fallbackEdges);
-    console.log('nodes', nodes);
-    console.log('edges', edges);
 
     return (
         <div style={{ height: '68vh', width: '100%', backgroundColor: '#F1EFEC' }}>

@@ -5,10 +5,10 @@ import ReactFlow, { Background, Controls, MiniMap, useNodesState, useEdgesState,
 
 import 'reactflow/dist/style.css';
 import { divisionEdges, divisionNodes } from '@/data';
-import CustomEdge from './CustomEdge';
-import MultiPortNode from './MultiportNode';
-import MainNode from './MainNode';
-import NodeDetailsModal from './NodeDetailsModal';
+import CustomEdge from '../edges/CustomEdge';
+import MultiPortNode from '../nodes/MultiportNode';
+import MainNode from '../nodes/MainNode';
+import NodeDetailsModal from '../modals/NodeDetailsModal';
 import { closeModal } from '@/store/slices/modal-slice';
 
 const edgeTypes = {
