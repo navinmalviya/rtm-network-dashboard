@@ -9,17 +9,16 @@ const mainNodeOperationsSlice = createSlice({
         setMainNodeDetails: (state, action) => {
             const { details } = action.payload;
 
-            const { nodeIp, label, status, racks, racksForRackTopology } = details;
+            const { nodeIp, label, status, racks = [], edges = [] } = details;
 
             const devices = [];
-            const edges = [];
             const rackMeta = [];
-            const noOfRacks = racks.count || 0;
 
-            racks?.forEach((rack, index) => {
+            racks.forEach((rack, index) => {
                 const rackId = `${label}_rack_${index + 1}`;
 
                 rackMeta.push({
+                    ...rack,
                     id: rackId,
                     label: rack.label,
                     size: rack.size,
@@ -28,27 +27,20 @@ const mainNodeOperationsSlice = createSlice({
                 rack.devices.forEach(device => {
                     devices.push({
                         ...device,
-                        rackId,
-                    });
-                });
-
-                rack.edges.forEach(edge => {
-                    edges.push({
-                        ...edge,
-                        rackId,
+                        rackId, // keep track of parent rack
                     });
                 });
             });
+
             state.rackviewData = details;
             state.details = {
                 nodeIp,
                 label,
                 status,
-                racks: rackMeta,
-                devices,
-                edges,
-                noOfRacks,
-                racksForRackTopology,
+                racks: rackMeta, // summary view of racks
+                devices, // flat list of devices
+                edges, // unified edges array (cross + intra-rack)
+                noOfRacks: racks.length,
             };
         },
     },

@@ -460,60 +460,22 @@ export const divisionNodes = [
     {
         id: 'BMI',
         type: 'mainNode',
-        data: { nodeIp: '1.1.1.1', status: 'down', label: 'BMI' },
-        style: { width: '70px', height: '34px' },
         position: { x: -1705, y: 1741 },
+        style: { width: '70px', height: '34px' },
         data: {
             nodeIp: '1.1.1.1',
             status: 'down',
             label: 'BMI',
 
-            // ✅ Racks inside the node
             racks: [
                 {
                     label: 'Rack A',
-                    size: 42, // 42U, full-size
-                    devices: [
-                        {
-                            id: 'test1',
-                            type: 'mainNode', // optional
-                            height: 1, // takes 1U
-                            data: { status: 'up', label: 'BMI1', nodeIp: '10.0.0.1' },
-                            style: { width: '100px', height: '34px' },
-                            position: { x: -1520, y: 1090 },
-                        },
-                        {
-                            id: 'test2',
-                            type: 'mainNode', // optional
-                            height: 1, // takes 1U
-                            data: { status: 'up', label: 'test2', nodeIp: '10.0.0.1' },
-                            style: { width: '100px', height: '34px' },
-                            position: { x: -1500, y: 1000 },
-                        },
-                    ],
-                    edges: [
-                        {
-                            id: 'test1-test2',
-                            source: 'test1',
-                            target: 'test2',
-                            type: 'custom',
-                            sourceLabel: 'Gi0/1',
-                            targetLabel: 'Gi0/2',
-                            status: 'up',
-                            sourceIP: '2.2.2.2',
-                            targetIP: '3.3.3.3',
-                        },
-                    ],
-                },
-            ],
-            racksForRackTopology: [
-                {
-                    label: 'BMI Rack A',
                     size: 42,
+                    position: { x: 0, y: 0 },
                     devices: [
                         {
                             id: 'devA1',
-                            label: 'Firewall',
+                            label: 'Firewall A',
                             nodeIp: '10.0.0.1',
                             rackLocation: 1,
                             height: 2,
@@ -528,24 +490,11 @@ export const divisionNodes = [
                             status: 'up',
                         },
                     ],
-                    edges: [
-                        {
-                            id: 'devA1-devA2',
-                            source: 'devA1',
-                            target: 'devA2',
-                            type: 'custom',
-                            sourceLabel: 'Gi0/1',
-                            targetLabel: 'Gi0/2',
-                            sourceIP: '192.168.1.1',
-                            targetIP: '192.168.1.2',
-                            status: 'up',
-                        },
-                    ],
-                    position: { x: 0, y: 0 },
                 },
                 {
                     label: 'Rack B',
                     size: 9,
+                    position: { x: 300, y: 0 },
                     devices: [
                         {
                             id: 'devB1',
@@ -556,8 +505,32 @@ export const divisionNodes = [
                             status: 'down',
                         },
                     ],
-                    edges: [],
-                    position: { x: 300, y: 0 },
+                },
+            ],
+
+            // ✅ All edges here (internal + cross-rack)
+            edges: [
+                {
+                    id: 'devA1-devA2',
+                    source: 'devA1',
+                    target: 'devA2',
+                    type: 'custom',
+                    sourceLabel: 'Gi0/1',
+                    targetLabel: 'Gi0/2',
+                    sourceIP: '192.168.1.1',
+                    targetIP: '192.168.1.2',
+                    status: 'up',
+                },
+                {
+                    id: 'devA2-devB1',
+                    source: 'devA2',
+                    target: 'devB1',
+                    type: 'custom',
+                    sourceLabel: 'Gi0/3',
+                    targetLabel: 'Gi0/1',
+                    sourceIP: '192.168.1.3',
+                    targetIP: '192.168.1.4',
+                    status: 'down',
                 },
             ],
         },

@@ -17,21 +17,16 @@ const edgeTypes = {
 };
 
 export default function RackTopologyView() {
-  const nodeDetails = useSelector(state => {
-    return state.mainNode.details ? state.mainNode.details : {};
-  });
-    const rackNodes = nodeDetails.racksForRackTopology.map((rack, index) => ({
+    const nodeDetails = useSelector(state => state.mainNode.details || {});
+
+    const rackNodes = (nodeDetails.racks || []).map((rack, index) => ({
         id: `rack-${index}`,
         type: 'rackNode',
         position: rack.position,
-        data: {
-            label: rack.label,
-            size: rack.size,
-            devices: rack.devices,
-        },
+        data: { label: rack.label, size: rack.size, devices: rack.devices },
     }));
 
-    const rackEdges = nodeDetails.racksForRackTopology.flatMap(r => r.edges);
+    const rackEdges = (nodeDetails.racks || []).flatMap(r => r.edges);
 
     const [nodes, , onNodesChange] = useNodesState(rackNodes);
     const [edges, , onEdgesChange] = useEdgesState(rackEdges);
@@ -44,8 +39,8 @@ export default function RackTopologyView() {
                     edges={edges}
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
-                    nodeTypes={nodeTypes}
-                    edgeTypes={edgeTypes}
+                    nodeTypes={{ rackNode: RackNode }}
+                    edgeTypes={{ custom: CustomEdge }}
                     fitView>
                     <Background />
                     <Controls />

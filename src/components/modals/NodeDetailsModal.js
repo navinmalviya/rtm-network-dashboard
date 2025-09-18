@@ -88,12 +88,11 @@ export default function NodeDetailsModal({ isOpen, onClose, data = {} }) {
             </div>
             <div>
                 {currentStep === 'overview' && (
-                    <InternalTopology
-                        internalNodes={nodeDetails.devices || []}
-                        internalEdges={nodeDetails.edges || []}
-                    />
+                    <InternalTopology racks={nodeDetails.racks || []} edges={nodeDetails.edges || []} />
                 )}
-                {currentStep === 'rackview' && <MultiRackTopology />}
+                {currentStep === 'rackview' && (
+                    <MultiRackTopology racks={nodeDetails.racks || []} edges={nodeDetails.edges || []} />
+                )}
             </div>
         </RtmModal>
     );

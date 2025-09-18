@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import ReactFlow, { Background, Controls, MiniMap, useNodesState, useEdgesState, ReactFlowProvider } from 'reactflow';
 
 import 'reactflow/dist/style.css';
@@ -8,57 +8,35 @@ import CustomEdge from '../edges/CustomEdge';
 import MultiPortNode from '../nodes/MultiportNode';
 import MainNode from '../nodes/MainNode';
 
-const edgeTypes = {
-    custom: CustomEdge,
-};
+const edgeTypes = { custom: CustomEdge };
+const nodeTypes = { multiPort: MultiPortNode, mainNode: MainNode };
 
-const nodeTypes = {
-    multiPort: MultiPortNode,
-    mainNode: MainNode,
-};
+export default function InternalTopology({ racks, edges = [] }) {
+    const spacingX = 300; // column gap between racks
+    const spacingY = 100; // vertical gap between devices
 
-export default function InternalTopology({ internalNodes, internalEdges }) {
-    const fallbackNodes = [
-        {
-            id: 'test1',
+    const allNodes = racks.flatMap((rack, rackIndex) =>
+        rack.devices.map((dev, devIndex) => ({
+            id: dev.id,
             type: 'mainNode',
-            data: { status: 'up', label: 'RTM_EXCH' },
-            style: { width: '100px', height: '34px' },
-            position: { x: -1520, y: 1090 },
-        },
-        {
-            id: 'test2',
-            type: 'mainNode',
-            data: { status: 'down', label: 'RTM_NOCC' },
-            style: { width: '100px', height: '34px' },
-            position: { x: -1330, y: 1008 },
-        },
-    ];
+            data: { status: dev.status, label: dev.label, nodeIp: dev.nodeIp },
+            style: { width: '120px', height: '40px' },
+            position: {
+                x: rackIndex * spacingX,
+                y: devIndex * spacingY,
+            },
+        })),
+    );
 
-    const fallbackEdges = [
-        {
-            id: 'test1-test2',
-            source: 'test1',
-            target: 'test2',
-            type: 'custom',
-            sourceLabel: 'Gi0/1',
-            targetLabel: 'Gi0/2',
-            status: 'up',
-            sourceIP: '2.2.2.2',
-            targetIP: '3.3.3.3',
-        },
-    ];
-    const [nodes, , onNodesChange] = useNodesState(internalNodes || fallbackNodes);
-    const [edges, , onEdgesChange] = useEdgesState(internalEdges || fallbackEdges);
+    const [nodes, , onNodesChange] = useNodesState(allNodes);
+    const [allEdges, , onEdgesChange] = useEdgesState(edges);
 
     return (
         <div style={{ height: '68vh', width: '100%', backgroundColor: '#F1EFEC' }}>
             <ReactFlowProvider>
                 <ReactFlow
-                    width={80}
-                    height={80}
                     nodes={nodes}
-                    edges={edges.map(edge => ({
+                    edges={allEdges.map(edge => ({
                         ...edge,
                         data: {
                             sourceLabel: edge.sourceLabel,
